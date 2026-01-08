@@ -33,7 +33,7 @@ function updateUI() {
     document.getElementById('lvlDisplay').innerText = state.corruptionLVL;
 
     // DC Scaling
-    const currentLogicDC = Math.floor(state.count / 4);
+    const currentLogicDC = Math.floor((state.count / 5) + 4);
     if (state.corruptionLVL < 5) {
         document.getElementById('dcDisplay').innerText = currentLogicDC;
         state.frozenDC = currentLogicDC;
@@ -109,7 +109,7 @@ document.getElementById('conModMain').onchange = (e) => {
 };
 
 function showSavePopup() {
-    const popupDC = state.currentLogicDC - 1;
+    const popupDC = state.currentLogicDC +4;
     document.getElementById('popupDC').innerText = popupDC;
     openModal('saveModal');
 }
