@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Hungry Healing Hoop Use Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Toolbar -->
+    <header class="toolbar">
+        <button id="menuBtn" class="icon-btn">☰</button>
+        <h1 class="title">Hungry Healing Hoop Use Tracker</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="con-mod-box">
+            <label>Con Modifier</label>
+            <input type="number" id="conModMain" value="0">
+        </div>
+
+        <div class="display-group">
+            <div id="countDisplay" class="count-text">0</div>
+            
+            <div id="dcContainer" class="hidden">
+                <div class="label">Next Save DC</div>
+                <div id="dcDisplay" class="value-text">4</div>
+            </div>
+
+            <div id="lvlContainer" class="hidden">
+                <div class="label">Corruption Level</div>
+                <div id="lvlDisplay" class="value-text danger">0</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <div class="action-row">
+                <button id="useBtn" class="primary-btn">Use Item</button>
+                <div class="charges-box">
+                    <button id="restBtn" class="text-btn">Long Rest</button>
+                    <span class="label">Daily Charges</span>
+                    <span id="chargesDisplay">(3/3)</span>
+                </div>
+            </div>
+            <button id="effectsBtn" class="outline-btn hidden">Effects</button>
+        </div>
+    </main>
+
+    <!-- Left Drawer (Menu) -->
+    <div id="leftDrawer" class="drawer left">
+        <div class="drawer-content">
+            <div class="menu-item" id="resetBtn">Reset Counter</div>
+            <hr>
+            <div class="section-title">Theme Settings</div>
+            <div class="theme-options">
+                <label><input type="radio" name="theme" value="light" checked> Light</label>
+                <label><input type="radio" name="theme" value="dark"> Dark</label>
+                <label><input type="radio" name="theme" value="poison"> Poison</label>
+            </div>
+            <div class="drawer-footer">
+                <button id="manualEntryBtn" class="text-btn">Manual Entry</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Drawer (Side-effects) -->
+    <div id="rightDrawer" class="drawer right">
+        <div class="drawer-content">
+            <h2>Side-effects</h2>
+            <div id="effectsList">No effects</div>
+        </div>
+    </div>
+
+    <!-- Manual Entry Modal -->
+    <div id="manualModal" class="modal">
+        <div class="modal-content">
+            <h3>Manual Entry</h3>
+            <label>Number of Uses</label>
+            <input type="number" id="manualUses">
+            <label>Corruption Level (0-5)</label>
+            <input type="number" id="manualLvl">
+            <p id="manualError" class="error hidden">Invalid corruption level. Try again</p>
+            <div class="modal-actions">
+                <button id="cancelManual">Cancel</button>
+                <button id="saveManual">Update</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Con Save Alert -->
+    <div id="saveModal" class="modal alert">
+        <div class="modal-content">
+            <h3>Con Save Required!</h3>
+            <p>Time for a Con Save!</p>
+            <p>Current DC: <b id="popupDC">4</b></p>
+            <div class="modal-actions">
+                <button id="failBtn" class="danger">Fail</button>
+                <button id="succeedBtn">Succeed</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
