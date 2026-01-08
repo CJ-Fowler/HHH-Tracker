@@ -2,7 +2,7 @@
 let state = {
     count: 0,
     corruptionLVL: 0,
-    frozenDC: 4,
+    frozenDC: 5,
     currentTheme: 'light',
     currentCharges: 3,
     conModifier: 0,
@@ -109,7 +109,7 @@ document.getElementById('conModMain').onchange = (e) => {
 };
 
 function showSavePopup() {
-    const popupDC = Math.floor(state.count / 5) + 3; // Actual DC - 1
+    const popupDC = Math.floor(state.count / 5) + 4; // Actual DC - 1
     document.getElementById('popupDC').innerText = popupDC;
     openModal('saveModal');
 }
@@ -133,7 +133,7 @@ document.getElementById('succeedBtn').onclick = () => {
 document.getElementById('resetBtn').onclick = () => {
     if (confirm('Reset everything?')) {
         state = {
-            count: 0, corruptionLVL: 0, frozenDC: 4, 
+            count: 0, corruptionLVL: 0, frozenDC: 5, 
             currentTheme: state.currentTheme, currentCharges: 3, 
             conModifier: 0, hasFailedSave: false
         };
@@ -158,7 +158,7 @@ document.getElementById('saveManual').onclick = () => {
         state.count = uses;
         state.corruptionLVL = lvl;
         if (lvl > 0) state.hasFailedSave = true;
-        if (lvl >= 5) state.frozenDC = Math.floor(uses / 5) + 4;
+        if (lvl >= 5) state.frozenDC = Math.floor(uses / 5) + 5;
         
         closeModal('manualModal');
         updateUI();
