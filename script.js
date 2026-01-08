@@ -109,7 +109,7 @@ document.getElementById('conModMain').onchange = (e) => {
 };
 
 function showSavePopup() {
-    const popupDC = Math.floor(state.count / 5) + 4; // Actual DC - 1
+    const popupDC = Math.frozenDC - 1
     document.getElementById('popupDC').innerText = popupDC;
     openModal('saveModal');
 }
