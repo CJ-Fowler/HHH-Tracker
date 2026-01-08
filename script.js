@@ -2,7 +2,7 @@
 let state = {
     count: 0,
     corruptionLVL: 0,
-    frozenDC: 5,
+    frozenDC: 4,
     currentTheme: 'light',
     currentCharges: 3,
     conModifier: 0,
@@ -33,7 +33,7 @@ function updateUI() {
     document.getElementById('lvlDisplay').innerText = state.corruptionLVL;
 
     // DC Scaling
-    const currentLogicDC = Math.floor((state.count / 5) + 4);
+    const currentLogicDC = Math.floor(state.count / 4);
     if (state.corruptionLVL < 5) {
         document.getElementById('dcDisplay').innerText = currentLogicDC;
         state.frozenDC = currentLogicDC;
@@ -105,11 +105,11 @@ document.getElementById('restBtn').onclick = () => {
 document.getElementById('conModMain').onchange = (e) => {
     state.conModifier = e.target.value;
     updateUI();
-    saveData()
+    saveData();
 };
 
 function showSavePopup() {
-    const popupDC = state.currentLogicDC +4;
+    const popupDC = Math.floor(state.count / 5) + 3; // Actual DC - 1
     document.getElementById('popupDC').innerText = popupDC;
     openModal('saveModal');
 }
@@ -133,7 +133,7 @@ document.getElementById('succeedBtn').onclick = () => {
 document.getElementById('resetBtn').onclick = () => {
     if (confirm('Reset everything?')) {
         state = {
-            count: 0, corruptionLVL: 0, frozenDC: 5, 
+            count: 0, corruptionLVL: 0, frozenDC: 4, 
             currentTheme: state.currentTheme, currentCharges: 3, 
             conModifier: 0, hasFailedSave: false
         };
@@ -158,7 +158,7 @@ document.getElementById('saveManual').onclick = () => {
         state.count = uses;
         state.corruptionLVL = lvl;
         if (lvl > 0) state.hasFailedSave = true;
-        if (lvl >= 5) state.frozenDC = Math.floor(uses / 5) + 5;
+        if (lvl >= 5) state.frozenDC = Math.floor(uses / 5) + 4;
         
         closeModal('manualModal');
         updateUI();
