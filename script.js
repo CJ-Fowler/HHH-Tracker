@@ -109,7 +109,8 @@ document.getElementById('conModMain').onchange = (e) => {
 };
 
 function showSavePopup() {
-    const popupDC = Math.floor(state.count / 5) + 3; // Actual DC - 1
+    const count = Number(state.count) || 0;
+    const popupDC = Math.floor(count / 5) + 3; // Actual DC - 1
     document.getElementById('popupDC').innerText = popupDC;
     openModal('saveModal');
 }
@@ -151,8 +152,15 @@ document.getElementById('manualEntryBtn').onclick = () => {
 };
 
 document.getElementById('saveManual').onclick = () => {
-    const uses = parseInt(document.getElementById('manualUses').value);
-    const lvl = parseInt(document.getElementById('manualLvl').value);
+    const usesRaw = document.getElementById('manualUses').value;
+    const lvlRaw = document.getElementById('manualLvl').value;
+    const uses = parseInt(usesRaw, 10);
+    const lvl = parseInt(lvlRaw, 10);
+
+    if (Number.isNaN(uses) || Number.isNaN(lvl)) {
+        document.getElementById('manualError').classList.remove('hidden');
+        return;
+    }
 
     if (lvl >= 0 && lvl <= 5) {
         state.count = uses;
