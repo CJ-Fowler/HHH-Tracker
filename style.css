@@ -32,6 +32,16 @@
     --drawer-bg: #0B1305;
     --border-color: #1a7a0a;
 }
+[data-theme='citrus'] {
+    --primary-color: #d19515;
+    --bg-color: #3b3719;
+    --surface-color: #3b3719;
+    --text-color: #d19515;
+    --text-secondary: #de7b0a;
+    --toolbar-text: #000000;
+    --drawer-bg: #4a3116;
+    --border-color: #de7b0a;
+}
 
 * { box-sizing: border-box; font-family: sans-serif; }
 
