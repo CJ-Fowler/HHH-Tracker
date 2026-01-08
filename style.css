@@ -34,12 +34,12 @@
 }
 [data-theme='citrus'] {
     --primary-color: #d19515;
-    --bg-color: #3b3719;
-    --surface-color: #3b3719;
+    --bg-color: #5C4033eb;
+    --surface-color: #5C4033eb;
     --text-color: #d19515;
     --text-secondary: #de7b0a;
     --toolbar-text: #000000;
-    --drawer-bg: #4a3116;
+    --drawer-bg: #5C4033eb;
     --border-color: #de7b0a;
 }
 
