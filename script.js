@@ -2,7 +2,7 @@
 let state = {
     count: 0,
     corruptionLVL: 0,
-    frozenDC: 4,
+    frozenDC: 5,
     currentTheme: 'light',
     currentCharges: 3,
     conModifier: 0,
@@ -27,13 +27,18 @@ function saveData() {
     localStorage.setItem('useTrackerData', JSON.stringify(state));
 }
 
+function computeActualDC(count) {
+    const n = Number(count) || 0;
+    return 5 + Math.floor(n / 5);
+}
+
 // UI Updates
 function updateUI() {
     document.getElementById('countDisplay').innerText = state.count;
     document.getElementById('lvlDisplay').innerText = state.corruptionLVL;
 
     // DC Scaling
-    const currentLogicDC = Math.floor(state.count / 4);
+    const currentLogicDC = computeActualDC(state.count);
     if (state.corruptionLVL < 5) {
         document.getElementById('dcDisplay').innerText = currentLogicDC;
         state.frozenDC = currentLogicDC;
@@ -110,7 +115,7 @@ document.getElementById('conModMain').onchange = (e) => {
 
 function showSavePopup() {
     const count = Number(state.count) || 0;
-    const popupDC = Math.floor(count / 5) + 3; // Actual DC - 1
+    const popupDC = computeActualDC(count) - 1; // display DC is actual DC - 1
     document.getElementById('popupDC').innerText = popupDC;
     openModal('saveModal');
 }
@@ -134,7 +139,7 @@ document.getElementById('succeedBtn').onclick = () => {
 document.getElementById('resetBtn').onclick = () => {
     if (confirm('Reset everything?')) {
         state = {
-            count: 0, corruptionLVL: 0, frozenDC: 4, 
+            count: 0, corruptionLVL: 0, frozenDC: 5, 
             currentTheme: state.currentTheme, currentCharges: 3, 
             conModifier: 0, hasFailedSave: false
         };
@@ -166,7 +171,7 @@ document.getElementById('saveManual').onclick = () => {
         state.count = uses;
         state.corruptionLVL = lvl;
         if (lvl > 0) state.hasFailedSave = true;
-        if (lvl >= 5) state.frozenDC = Math.floor(uses / 5) + 4;
+        if (lvl >= 5) state.frozenDC = computeActualDC(uses);
         
         closeModal('manualModal');
         updateUI();
