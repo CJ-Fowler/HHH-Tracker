@@ -51,7 +51,6 @@ function updateUI() {
     const showDC = (state.hasFailedSave || state.count >= 5) && !isLevel5;
     toggleVisibility('dcContainer', showDC);
     toggleVisibility('lvlContainer', state.corruptionLVL > 0);
-    toggleVisibility('effectsBtn', state.corruptionLVL > 0);
 
     // Charges
     const maxCharges = 3 + ((state.corruptionLVL >= 4 && state.conModifier>0) ? parseInt(state.conModifier) : 0);
@@ -71,17 +70,17 @@ function updateEffectsList() {
     const lvl = state.corruptionLVL;
 
     if (lvl >= 5) {
-        html = `<b>MAX CORRUPTION</b><br><br><b>POSITIVE EFFECTS</b><br>• Add 1 to AC<br>• You add 1d4 damage to all weapon attacks (including unarmed)<br>• You gain two d10 Hit Dice that may only be used to heal with this item.<br>• This item increases its number of daily uses by Your Con bonus.<br>• You may now use this item as a Reaction.<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>11</b> meals each day to avoid starvation<br>• You suffer Disadvantage on Charisma-based checks (except Intimidate) until you've eaten at least 6 meals worth of food.<br>• You no longer regain hit dice on a long rest if you are at risk of starvation.<br>• You gain vulnerability to fire damage.`;
+        html = `<b>MAX CORRUPTION</b><br><br><b>Base Effects</b><br>As a bonus action, you may expend any number of remaining charges and an equal number of remaining hit dice to heal the number rolled.<br>You regain all expended charges when you finish a long rest.<br><br><b>POSITIVE EFFECTS</b><br>• Add 3 to AC<br>• You add 1d4 damage to all weapon attacks (including unarmed)<br>• You gain two d10 Hit Dice that may only be used to heal with this item.<br>• This item increases its number of daily uses by Your Con bonus.<br>• You may now use this item as a Reaction.<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>11</b> meals each day to avoid starvation<br>• You suffer Disadvantage on Charisma-based checks (except Intimidate) until you've eaten at least 6 meals worth of food.<br>• You no longer regain hit dice on a long rest if you are at risk of starvation.<br>• You gain vulnerability to fire damage.`;
     } else if (lvl >= 4) {
-        html = `<b>POSITIVE EFFECTS</b><br>• Add 1 to AC<br>• You add 1d4 damage to all weapon attacks (including unarmed)<br>• You gain two d10 Hit Dice that may only be used to heal with this item.<br>• This item increases its number of daily uses by Your Con bonus.<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>10</b> meals each day to avoid starvation<br>• You suffer Disadvantage on Charisma-based checks (except Intimidate) until you've eaten at least 6 meals worth of food.<br>• You no longer regain hit dice on a long rest if you are at risk of starvation.`;
+        html = `<b>Base Effects</b><br>As a bonus action, you may expend any number of remaining charges and an equal number of remaining hit dice to heal the number rolled.<br>You regain all expended charges when you finish a long rest.<br><b>POSITIVE EFFECTS</b><br>• Add 2 to AC<br>• You add 1d4 damage to all weapon attacks (including unarmed)<br>• You gain two d10 Hit Dice that may only be used to heal with this item.<br>• This item increases its number of daily uses by Your Con bonus.<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>10</b> meals each day to avoid starvation<br>• You suffer Disadvantage on Charisma-based checks (except Intimidate) until you've eaten at least 6 meals worth of food.<br>• You no longer regain hit dice on a long rest if you are at risk of starvation.`;
     } else if (lvl >= 3) {
-        html = `<b>POSITIVE EFFECTS</b><br>• Add 1 to AC<br>• You add 1d4 damage to all weapon attacks (including unarmed)<br>• You gain two d10 Hit Dice that may only be used to heal with this item.<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>9</b> meals each day to avoid starvation<br>• You suffer Disadvantage on Charisma-based checks (except Intimidate) until you've eaten at least 6 meals worth of food.`;
+        html = `<b>Base Effects</b><br>As a bonus action, you may expend any number of remaining charges and an equal number of remaining hit dice to heal the number rolled.<br>You regain all expended charges when you finish a long rest.<br><br><b>POSITIVE EFFECTS</b><br>• Add 2 to AC<br>• You add 1d4 damage to all weapon attacks (including unarmed)<br>• You gain two d10 Hit Dice that may only be used to heal with this item.<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>9</b> meals each day to avoid starvation<br>• You suffer Disadvantage on Charisma-based checks (except Intimidate) until you've eaten at least 6 meals worth of food.`;
     } else if (lvl >= 2) {
-        html = `<b>POSITIVE EFFECTS</b><br>• Add 1 to AC<br>• You add 1d4 damage to all weapon attacks (including unarmed)<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>8</b> meals each day to avoid starvation`;
+        html = `<b>Base Effects</b><br>As a bonus action, you may expend any number of remaining charges and an equal number of remaining hit dice to heal the number rolled.<br>You regain all expended charges when you finish a long rest.<br><br><b>POSITIVE EFFECTS</b><br>• Add 1 to AC<br>• You add 1d4 damage to all weapon attacks (including unarmed)<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>8</b> meals each day to avoid starvation`;
     } else if (lvl >= 1) {
-        html = `<b>POSITIVE EFFECTS</b><br>• Add 1 to AC<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>7</b> meals each day to avoid starvation`;
+        html = `<b>Base Effects</b><br>As a bonus action, you may expend any number of remaining charges and an equal number of remaining hit dice to heal the number rolled.<br>You regain all expended charges when you finish a long rest.<br><br><b>POSITIVE EFFECTS</b><br>• Add 1 to AC<br><br><b>NEGATIVE EFFECTS</b><br>• You must eat at least <b>7</b> meals each day to avoid starvation`;
     } else {
-        html = 'No effects';
+        html = '<b>Base Effects</b><br>As a bonus action, you may expend any number of remaining charges and an equal number of remaining hit dice to heal the number rolled.<br>You regain all expended charges when you finish a long rest.';
     }
 
     document.getElementById('effectsList').innerHTML = html;

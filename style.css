@@ -42,6 +42,17 @@
     --drawer-bg: #1e110beb;
     --border-color: #de7b0a;
 }
+[data-theme='forest'] {
+    --primary-color: #8B6F47;
+    --bg-color: #1B4D2F;
+    --surface-color: #1B4D2F;
+    --text-color: #ffffff;
+    --text-secondary: #9FBF9F;
+    --toolbar-text: #ffffff;
+    --drawer-bg: #1B4D2F;
+    --border-color: #2D5A3D;
+}
+
 
 * { box-sizing: border-box; font-family: sans-serif; }
 
